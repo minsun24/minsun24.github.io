@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Intro from './pages/Intro';
+import Intro from '../src/pages/Intro';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
+import Home from '../src/pages/Home';
+import Projects from '../src/pages/Projects';
 
 function App() {
   return (
