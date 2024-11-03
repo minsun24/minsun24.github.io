@@ -5,7 +5,7 @@ import css from '../assets/img/css.png';
 import typescript from '../assets/img/typescript.png';
 
 export const stackData = [
-    {
+    {   
         "name": "python",
         "filename": python
     },

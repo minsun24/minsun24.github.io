@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Flex, Text, Image, HStack } from '@chakra-ui/react';
+import { Box, Flex, Text, Image, HStack, Link,  } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import HiImage from '../assets/img/minsunHi.png';
 import { MdArrowDropDown } from "react-icons/md";
+import minsun from '../assets/img/MINSUN.png';
 
 const Header = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -22,7 +23,7 @@ const Header = () => {
 
     return (
         <Box
-            zIndex='2000'
+            zIndex='1000'
             position="fixed"
             top={0}
             left={0}
@@ -48,18 +49,22 @@ const Header = () => {
                 >
                     {/* Logo Area */}
                     <Box flex="1">
-                        <Text as={RouterLink} to="/home" color='#E50914' fontWeight={'bold'} fontSize='xl'>
+                        <Link href='/home'>
+                        <Image src={minsun} fontSize='25px' w='92.5px' h='25px'/>
+                        </Link>
+                        
+                        {/* <Text as={RouterLink} to="/home" color='#E50914' fontWeight={'bold'} fontSize='xl'>
                             M I N S U N 
-                        </Text>
+                        </Text> */}
                     </Box>
 
                     {/* Navigation Menu */}
-                    <Flex as="nav" flex="6" justifyContent='start' gap={6}>
-                        <Text as={RouterLink} to="/home" color='white'>홈</Text>
-                        <Text as={RouterLink} to="/about" color='white'>소개</Text>
-                        <Text as={RouterLink} to="/tech" color='white'>테크</Text>
-                        <Text as={RouterLink} to="/projects" color='white'>프로젝트</Text>
-                        <Text as={RouterLink} to="/activities" color='white'>활동</Text>
+                    <Flex as="nav" flex="9" justifyContent='start' gap={6}>
+                        <Text as={RouterLink} to="/home" color='white' fontSize='sm'>홈</Text>
+                        <Text as={RouterLink} to="/about" color='white' fontSize='sm'>소개</Text>
+                        <Text as={RouterLink} to="/tech" color='white' fontSize='sm'>테크</Text>
+                        <Text as={RouterLink} to="/projects" color='white' fontSize='sm'>프로젝트</Text>
+                        <Text as={RouterLink} to="/activities" color='white' fontSize='sm'>활동</Text>
                     </Flex>
 
                     {/* Profile Area */}

@@ -8,7 +8,8 @@ import reactnative from '../assets/img/reactnative.png';
 export const techData = [
     {
         "name": "react",
-        "filename": react_
+        "filename": react_,
+        // "description": 'dhkasfld '
     },
     {
         "name": "django",
