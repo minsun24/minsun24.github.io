@@ -5,6 +5,7 @@ import Intro from '../src/pages/Intro';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import Home from '../src/pages/Home';
 import Projects from '../src/pages/Projects';
+import GuestBook from './pages/GuestBook';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Intro />} />
         <Route path="/home" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/guestbook" element={<GuestBook />} />
       </Routes>
     </BrowserRouter>
   );

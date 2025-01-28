@@ -1,13 +1,12 @@
 import { Image, Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, Button, HStack, IconButton, Divider, VStack, Link, Grid, GridItem } from '@chakra-ui/react';
-import React, { Component, useState } from 'react';
-import profileMinsun from '../assets/img/profileMinsun.png';
+import React, { useState } from 'react';
 import { IoMdPlay } from "react-icons/io";
-import { HiOutlineThumbUp } from "react-icons/hi";
-import { FaThumbsUp } from "react-icons/fa6";
-import { FaPhoneAlt } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
 import { FaGithub } from "react-icons/fa6";
 import { ProjectItem } from '../types/types';
+import SkillBadges from './SkillBadges';
+import ToolBadges from './ToolBadges';
+import RoleBadge from './RoleBadge';
+
 
 interface ProjectModalProps{
     isOpen: boolean;
@@ -15,7 +14,6 @@ interface ProjectModalProps{
     data: ProjectItem;
 }
 const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
-    const [isHeart, setIsHeart] = useState<boolean>(false);
 
     if (!data.data) return null;  // data.data가 없으면 렌더링하지 않음
 
@@ -23,25 +21,47 @@ const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
         <Box zIndex='1400' position='absolute'>
         <Modal isOpen={isOpen} onClose={onClose} size="3xl" >
         <ModalOverlay bgColor='rgba(0,0,0,0.6)' />
-        <ModalContent bgColor="#181818" borderRadius='10px'>
-        <ModalHeader w='100%' 
+        <ModalContent bgColor="#1b1b1e" borderRadius='10px'>
+        <ModalHeader 
+        w='100%' 
         // bgImage={data?.filename} 
-        objectFit="cover" overflow='hidden'>
-            <Box h='200px'>
-            <Image src={data?.filename} w='200px' objectFit={'cover'}/>
-            <Text color='white'>{data?.name}</Text>
+        objectFit="cover" 
+        overflow='hidden'
+        m='0'
+        p='0'
+        position='relative'
+        >
+            
+            <Image src={data?.filename} w='100%' h='275px' m='0 auto' objectFit={'cover'} borderTopRadius='10px' />
+            <Box 
+            h='50px'
+            w='100%'
+            left='0'
+            position='absolute'
+            bottom='0'
+            zIndex='1000'
+            bgGradient={'linear-gradient(0deg, #181818 -2.38%, rgba(0, 0, 0, 0.552275) 49.4%,  rgba(0, 0, 0, 0) 97.62%)'} 
+            // bgGradient={'linear-gradient(0deg, #181818 -2.38%, rgba(0, 0, 0, 0.552275) 60.4%,  rgba(0, 0, 0, 0) 97.62%)'} 
+            >
             </Box>
             
+
+            
         </ModalHeader>
-                <ModalCloseButton color="white" zIndex="2" />
-                <ModalBody pt="1rem" pb={6} px="3rem">
-                    <HStack spacing={5}>
-                        {data.data.link && (
-                            <Button leftIcon={<IoMdPlay />}>
-                                <Link href={data.data.link} isExternal>Demo</Link>
+                <ModalCloseButton color="black" zIndex="2" />
+                <ModalBody pt="2rem" pb={6} px="3rem" position='relative'>
+                <Box position='absolute' color='white' zIndex='1500' fontSize='4xl' h='10%' px="2rem" top='0' fontWeight='bold'>
+                {data.data.korean_name} {data?.data.name}
+                </Box>
+                    <HStack spacing={5} pt='9%' h='100%' px="2rem">
+                        {data.link && (
+                            <Button leftIcon={<IoMdPlay />} size='sm'>
+                                상세 페이지
                             </Button>
                         )}
+                        <Link href={data.link} isExternal>
                         <IconButton
+                        size='sm'
                             icon={<FaGithub fontSize="1.2rem" />}
                             aria-label="Github"
                             variant="ghost"
@@ -49,6 +69,7 @@ const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
                             borderRadius="30px"
                             border="solid white 1.2px"
                         />
+                        </Link>
                     </HStack>
 
                     <Box mt="2rem" color="white" px="2rem" pb='3rem'>
@@ -71,9 +92,19 @@ const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
                             <Divider mt="0.7rem" />
                             <HStack ml="0.6rem" mt="1rem" flexWrap="wrap" spacing={3}>
                                 {data.data.skills.map((skill, index) => (
-                                    <Text key={index} fontSize="sm" fontWeight="thin">
-                                        {skill}
-                                    </Text>
+                                    <SkillBadges skill={skill} />
+                                ))}
+                            </HStack>
+                        </Box>
+                          {/* Tool Section */}
+                          <Box mb="2rem">
+                            <Text ml="0.6rem" fontSize="xl" fontWeight="bold" letterSpacing="wider">
+                                Tools
+                            </Text>
+                            <Divider mt="0.7rem" />
+                            <HStack ml="0.6rem" mt="1rem" flexWrap="wrap" spacing={3}>
+                                {data.data.tools.map((tool, index) => (
+                                    <ToolBadges tool={tool}/>
                                 ))}
                             </HStack>
                         </Box>
@@ -85,49 +116,49 @@ const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
                             </Text>
                             <Divider mt="0.7rem" />
                             <VStack align="stretch" ml="0.6rem" mt="1rem" spacing={3} fontWeight="thin">
-                                <Grid templateColumns="140px 1fr" gap={3}>
+                                <Grid templateColumns="100px 1fr" gap={3}>
                                     <GridItem>
-                                        <Text>Period</Text>
+                                        <Text as='b'>진행 기간</Text>
                                     </GridItem>
                                     <GridItem>
-                                        <Text fontSize="sm">{data.data.period}</Text>
+                                        <Text fontSize="15px">{data.data.period}</Text>
                                     </GridItem>
 
                                     <GridItem>
-                                        <Text>Team</Text>
+                                        <Text as='b'>개발 인원</Text>
                                     </GridItem>
                                     <GridItem>
                                         <VStack align="flex-start" spacing={1}>
                                             {data.data.team.backend > 0 && (
-                                                <Text fontSize="sm">Backend: {data.data.team.backend}명</Text>
+                                                <Text fontSize="15px">Backend: {data.data.team.backend}명</Text>
                                             )}
                                             {data.data.team.frontend > 0 && (
-                                                <Text fontSize="sm">Frontend: {data.data.team.frontend}명</Text>
+                                                <Text fontSize="15px">Frontend: {data.data.team.frontend}명</Text>
                                             )}
                                             {data.data.team.designer > 0 && (
-                                                <Text fontSize="sm">Designer: {data.data.team.designer}명</Text>
+                                                <Text fontSize="15px">Designer: {data.data.team.designer}명</Text>
                                             )}
                                             {data.data.team.pm > 0 && (
-                                                <Text fontSize="sm">PM: {data.data.team.pm}명</Text>
+                                                <Text fontSize="15px">PM: {data.data.team.pm}명</Text>
                                             )}
                                         </VStack>
                                     </GridItem>
 
                                     <GridItem>
-                                        <Text>Role</Text>
+                                        <Text as='b'>역할</Text>
                                     </GridItem>
                                     <GridItem>
-                                        <VStack align="flex-start" spacing={1}>
+                                        <HStack align="flex-start" spacing={3}>
                                             {data.data.role.map((role, index) => (
-                                                <Text key={index} fontSize="sm">{role}</Text>
+                                                // <Text key={index} fontSize="15px">{role}</Text>
+                                                <RoleBadge role={role} key={index}/>
                                             ))}
-                                        </VStack>
+                                        </HStack>
                                     </GridItem>
                                 </Grid>
                             </VStack>
                         </Box>
-
-                        {/* Details Section */}
+                        <Box mb="2rem">
                         {data.data.details && (
                             <Box>
                                 <Text ml="0.6rem" fontSize="xl" fontWeight="bold" letterSpacing="wider">
@@ -137,17 +168,34 @@ const ProjectModal = ({ isOpen, onClose, data }: ProjectModalProps) => {
                                 <VStack align="stretch" ml="0.6rem" mt="1rem" spacing={4}>
                                     {data.data.details.map((detail, index) => (
                                         <Box key={index}>
-                                            <Text fontSize="md" fontWeight="semibold" mb={2}>
-                                                {detail.page}
-                                            </Text>
-                                            <Text fontSize="sm" fontWeight="thin" mb={2}>
-                                                {detail.function}
+                                            <Text fontSize="sm" fontWeight="thin">
+                                                {detail}  {/* ✅ 단순 텍스트로 출력 */}
                                             </Text>
                                         </Box>
                                     ))}
                                 </VStack>
                             </Box>
                         )}
+                        </Box>
+                        <Box mb="2rem">
+                        {data.data.learned && (
+                            <Box>
+                                <Text ml="0.6rem" fontSize="xl" fontWeight="bold" letterSpacing="wider">
+                                    Learned
+                                </Text>
+                                <Divider mt="0.7rem" />
+                                <VStack align="stretch" ml="0.6rem" mt="1rem" spacing={4}>
+                                    {data.data.learned.map((learn, index) => (
+                                        <Box key={index}>
+                                            <Text fontSize="sm" fontWeight="thin">
+                                                {learn}  {/* ✅ 단순 텍스트로 출력 */}
+                                            </Text>
+                                        </Box>
+                                    ))}
+                                </VStack>
+                            </Box>
+                        )}
+                        </Box>
                     </Box>
                 </ModalBody>
             </ModalContent>

@@ -14,6 +14,10 @@ export const stackData = [
         "filename": javascript
     },
     {
+        "name": "typescript",
+        "filename": typescript
+    },
+    {
         "name": "html",
         "filename": html
     },
@@ -21,8 +25,5 @@ export const stackData = [
         "name": "css",
         "filename": css
     },
-    {
-        "name": "typescript",
-        "filename": typescript
-    }
+  
 ];

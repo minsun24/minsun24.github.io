@@ -23,12 +23,13 @@ export const techData = [
         "name": "github",
         "filename": github
     },
+  
+    {
+        "name" : "reactNative",
+        "filename": reactnative
+    },
     {
         "name": "expo",
         "filename": expo
     },
-    {
-        "name" : "reactNative",
-        "filename": reactnative
-    }
 ];

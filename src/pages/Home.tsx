@@ -8,6 +8,7 @@ import ArrayImage from '../components/ArrayImage';
 import {stackData} from '../assets/stack';
 import {techData} from '../assets/tech';
 import {projectData} from '../assets/project';
+import {workData} from '../assets/work'; 
 import Footer from '../components/Footer';
 import MyProfile from '../components/MyProfile';
 
@@ -59,7 +60,8 @@ const Home = () => {
                             fontFamily="'Anton', sans-serif"
                             letterSpacing="wide"
                         >
-                            FRONTEND DEVELOPER
+                            {/* FRONTEND DEVELOPER */}
+                            🌱ASPIRING DEVELOPER
                         </Text>
                         <Text 
                             color='white' 
@@ -69,7 +71,7 @@ const Home = () => {
                             fontFamily="'Anton', sans-serif"
                             letterSpacing="wide"
                         >
-                            JEONG MINSUN
+                            MINSUN JEONG 
                         </Text>
                         <Text color='white' fontSize='xl' fontWeight='bold' mt='20px'>
                             안녕하세요, 프론트엔드 개발자를 꿈꾸는 정민선입니다. 
@@ -100,6 +102,8 @@ const Home = () => {
                 <ArrayImage data={techData} type={'tech'} />
                 <Text color='white' fontSize="xl" fontWeight="" mb={1}  px={6}>프로젝트</Text>
                 <ArrayImage data={projectData} type={'project'}/>
+                <Text color='white' fontSize="xl" fontWeight="" mb={1}  px={6}>경험</Text>
+                <ArrayImage data={workData} type={'work'}/>
             </Box>
 
             <Footer />

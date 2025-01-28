@@ -7,6 +7,7 @@ import { FaThumbsUp } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaGithub } from "react-icons/fa6";
+import { SiVelog } from "react-icons/si";
 
 interface MyProfileProps{
     isOpen: boolean;
@@ -18,6 +19,24 @@ const MyProfile = ({ isOpen, onClose }: MyProfileProps) => {
     function handleHeart(){
         setIsHeart(!isHeart);
     }
+
+    function calculateAge(birthYear:number, birthMonth:number, birthDay:number) {
+        const today = new Date();
+        const birthDate = new Date(birthYear, birthMonth - 1, birthDay); // 월은 0부터 시작하므로 -1
+    
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        const dayDiff = today.getDate() - birthDate.getDate();
+    
+        // 생일이 아직 안 지났다면 나이에서 1 빼기
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+            age--;
+        }
+    
+        return age;
+    }
+
+
 
 
     return(
@@ -37,10 +56,10 @@ const MyProfile = ({ isOpen, onClose }: MyProfileProps) => {
             
             <Text 
             color='white' 
-            fontFamily="'Anton', sans-serif" 
+            // fontFamily="'Anton', sans-serif" 
             fontSize='3.2rem'
-            letterSpacing='wider'
-            fontWeight='normal'
+            // letterSpacing='wider'
+            // fontWeight='normal'
             textShadow={'0px 4px 4px rgba(0, 0, 0, 0.25)'}
             alignContent={'end'}
             position='absolute'
@@ -48,7 +67,8 @@ const MyProfile = ({ isOpen, onClose }: MyProfileProps) => {
             bottom='12%'
             left="6%"
             >
-                <p>FRONTEND</p>
+                {/* <p>ASPIRING DEVELOPER</p> */}
+                <p>🌱 DEVELOPER</p>
                 <p>JEONG MINSUN</p>
             </Text>
             <Image src={profileMinsun}  float='right' justifyContent={'right'} w='270px' />
@@ -58,15 +78,13 @@ const MyProfile = ({ isOpen, onClose }: MyProfileProps) => {
             left='0'
             position='absolute'
             bottom='0'
-            bgGradient={'linear-gradient(0deg, #181818 -2.38%, rgba(0, 0, 0, 0.552275) 49.4%, rgba(0, 0, 0, 0) 97.62%)'}>
-
-            </Box>
+            bgGradient={'linear-gradient(0deg, #181818 -2.38%, rgba(0, 0, 0, 0.552275) 49.4%, rgba(0, 0, 0, 0) 97.62%)'} />
             
             </ModalHeader>
             <ModalCloseButton color="white" />
             <ModalBody pt="1rem" pb={6} px="3rem">
             <HStack spacing={5}>
-                <Button leftIcon={<IoMdPlay />}><Link href='/projects'>프로젝트</Link></Button>
+                <Button leftIcon={<IoMdPlay />}><Link href='/projects'>프로젝트 보러 가기</Link></Button>
                 <IconButton
                 onClick={handleHeart}
                 color={isHeart ? "black" : "white"}
@@ -95,7 +113,7 @@ const MyProfile = ({ isOpen, onClose }: MyProfileProps) => {
                         <Text>2002년 2월 4일생</Text>
                     </GridItem>
                     <GridItem>
-                        <Text fontSize="xs">23세</Text>
+                        <Text fontSize="sm">{calculateAge(2002, 2, 4)}세</Text>
                     </GridItem>
 
                     <GridItem>
@@ -125,7 +143,7 @@ const MyProfile = ({ isOpen, onClose }: MyProfileProps) => {
                 </Text>
                 <Divider mt="0.7rem" />
                 <VStack align="stretch" ml="0.6rem" mt="1rem" spacing={3} fontWeight="thin">
-                    <Grid templateColumns="24px 1fr" gap={3}>
+                    <Grid templateColumns="24px 1fr" gap={3} alignItems={'center'}>
                     <GridItem>
                         <FaPhoneAlt />
                     </GridItem>
@@ -146,6 +164,14 @@ const MyProfile = ({ isOpen, onClose }: MyProfileProps) => {
                     <GridItem>
                         <Link href="https://github.com/minsun24" isExternal>
                         minsun24
+                        </Link>
+                    </GridItem>
+                    <GridItem >
+                        <SiVelog />
+                    </GridItem>
+                    <GridItem >
+                        <Link href="https://velog.io/@minsun24/posts" isExternal>
+                        weaving-everyday24.log
                         </Link>
                     </GridItem>
                     </Grid>
@@ -185,7 +211,7 @@ const MyProfile = ({ isOpen, onClose }: MyProfileProps) => {
                     <GridItem>
                         <VStack align="flex-start" spacing={1} >
                         <Text fontSize="sm">정적분석기술팀 / 프론트엔드 개발 인턴</Text>
-                        <Text fontSize="xs">2024년 6월 ~ 재직중</Text>
+                        <Text fontSize="xs">2024년 6월 ~ 2024년 11월 ( 5개월 )</Text>
                         </VStack>
                     </GridItem>
                     </Grid>

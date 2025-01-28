@@ -1,6 +1,5 @@
 
-
-export interface ProjectDetail{
+export interface ProjectPage{
     page: string;
     function: string;
     image : {
@@ -14,6 +13,7 @@ export type ProjectCatetory= 'Web' | 'App' | undefined
 export interface ProjectItem{
     name: string;
     filename: string;
+    link?: string;
     data?:{
         category: ProjectCatetory; 
         name: string;
@@ -30,8 +30,17 @@ export interface ProjectItem{
         };
         level: number;
         role: string[];
-        link?:string;
-        details?: ProjectDetail[];
+        details? : String[];
+        pages?: ProjectPage[];
+        learned: string[];
+    }
+}
+export interface WorkItem{
+    name: string;
+    link?: string;
+    data?:{
+        period: string;
+        
     }
 }
 
