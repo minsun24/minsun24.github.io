@@ -134,7 +134,7 @@ const GuestBook = () => {
 
                 {/* 방명록 리스트 */}
                 <VStack align="stretch" mt={6} spacing={6}>
-                    {guestbookEntries.map((entry) => (
+                    {(guestbookEntries || [])?.map((entry) => (
                         <Box key={entry.id} py={5} px={6} bg="blackAlpha.700" borderRadius="10px">
                             <HStack justify="space-between">
                                 {/* 유저 정보 */}
