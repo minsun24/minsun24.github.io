@@ -25,5 +25,5 @@ def root(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', root), 
-    path('api/', include('guestbook.urls')),  # ✅ `api/` prefix 추가
+    path('guestbook/', include('guestbook.urls')),
 ]
