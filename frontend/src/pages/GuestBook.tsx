@@ -4,6 +4,17 @@ import {
 import { FaTrash } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import axios from 'axios'; 
+ 
+interface GuestbookEntry {
+    id: number;
+    name: string;
+    emoji: string;
+    isGuest: boolean;
+    message: string;
+    date: string;
+}
+
 
 // 🐰 랜덤 이모지 목록
 const avatarEmojis = ["🐰", "🦊", "🐼", "🐶", "🐱", "🐵", "🐸", "🐯", "🐻", "🦄"];
@@ -18,28 +29,21 @@ const getRandomAvatar = () => {
     };
 };
 
+const API_URL = "http://127.0.0.1:8000/api/guestbook/";
+
 const GuestBook = () => {
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
     const [isAnonymous, setIsAnonymous] = useState(false);
-    const [guestbookEntries, setGuestbookEntries] = useState([
-        {
-            id: 1,
-            name: "익명",
-            ...getRandomAvatar(),
-            isGuest: true,
-            message: "안녕하세요! 잘 보고 갑니다!! 파이팅 하세요 ~",
-            date: "yesterday"
-        },
-        {
-            id: 2,
-            name: "FoxyFOx",
-            ...getRandomAvatar(),
-            isGuest: false,
-            message: "안녕하세요! 잘 보고 갑니다!! 파이팅 하세요 ~",
-            date: "yesterday"
-        }
-    ]);
+    const [guestbookEntries, setGuestbookEntries] = useState<GuestbookEntry[]>([]); 
+
+    // 서버에서 방명록 데이터 가져오기
+    useEffect(() => {
+        axios.get(API_URL)
+            .then((res) => setGuestbookEntries(res.data))
+            .catch((err) => console.error("Error fetching guestbook:", err));
+    }, []);
+
 
     useEffect(() => {
         if (isAnonymous) {
@@ -55,14 +59,21 @@ const GuestBook = () => {
         const newEntry = {
             id: guestbookEntries.length + 1,
             name: isAnonymous ? "익명" : name || "익명",
-            ...getRandomAvatar(), // 랜덤 아바타 생성
+            emoji: getRandomAvatar().emoji, // 랜덤 아바타 생성
             isGuest: isAnonymous,
             message,
             date: "Today"
         };
 
-        setGuestbookEntries([newEntry, ...guestbookEntries]);
-        setMessage("");
+        // setGuestbookEntries([newEntry, ...guestbookEntries]);
+        // setMessage("");
+        
+        axios.post<GuestbookEntry>(API_URL, newEntry)
+        .then((res) => {
+            setGuestbookEntries((prev) => [res.data, ... prev]);  // 새 데이터 추가
+            setMessage(""); 
+        })
+        .catch((err) => console.error("Error posting guestbook:", err));
     };
 
     return (
