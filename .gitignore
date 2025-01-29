@@ -68,3 +68,4 @@ backend/.vscode/
 /.coverage    # Coverage.py 코드 커버리지 리포트
 /.pytest_cache/ # pytest 캐시
 /.tox/        # tox 환경
+.env
