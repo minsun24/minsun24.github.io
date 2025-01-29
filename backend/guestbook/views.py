@@ -8,3 +8,12 @@ from .serializers import GuestBookSerializer
 class GuestBookViewSet(viewsets.ModelViewSet):
     queryset = GuestBook.objects.all().order_by('-created_at')
     serializer_class = GuestBookSerializer 
+
+
+    # ✅ POST 요청이 정상적으로 처리되는지 확인하는 메서드 추가
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
