@@ -6,5 +6,5 @@ router = DefaultRouter()
 router.register(r'guestbook', GuestBookViewSet)  # /api/guestbook/
 
 urlpatterns = [
-    path('api/', include(router.urls)),  # `/api/guestbook/` 엔드포인트 활성화
+    path('api/', include(router.urls)),  # `/api/guestbook/` 정상적으로 연결됨
 ]

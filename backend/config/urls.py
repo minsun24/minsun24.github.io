@@ -25,6 +25,5 @@ def root(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', root), 
-    path('api/', include('guestbook.urls'))
-
+    path('', include('guestbook.urls'))  # `api/` 중복 제거
 ]
