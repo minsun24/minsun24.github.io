@@ -28,8 +28,8 @@ const getRandomAvatar = () => {
         bgColor: avatarColors[Math.floor(Math.random() * avatarColors.length)]
     };
 };
-
-const API_URL = "http://127.0.0.1:8000/api/guestbook/";
+const BASE_URL = process.env.BASE_URL;
+const API_URL = `${BASE_URL}/api/guestbook/`;
 
 const GuestBook = () => {
     const [name, setName] = useState("");
