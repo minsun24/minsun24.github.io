@@ -33,8 +33,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['minsun24-github-io.onrender.com', 'localhost', '127.0.0.1']
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React 개발 서버
     "https://minsun24.github.io",  # GitHub Pages 배포 주소
+    "http://localhost:3000",  # React 개발 서버
+    
 ]
 
 # Application definition
