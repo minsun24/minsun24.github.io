@@ -40,8 +40,14 @@ const GuestBook = () => {
     // 서버에서 방명록 데이터 가져오기
     useEffect(() => {
         axios.get(API_URL)
-            .then((res) => setGuestbookEntries(res.data))
-            .catch((err) => console.error("Error fetching guestbook:", err));
+            .then((res) => {
+                console.log("API Response:", res.data); // 🔍 응답 데이터 확인
+                setGuestbookEntries(Array.isArray(res.data) ? res.data : []);
+            })
+            .catch((err) => {
+                console.error("Error fetching guestbook:", err);
+                setGuestbookEntries([]);  // 요청 실패 시 빈 배열 할당
+            });
     }, []);
 
 
@@ -134,7 +140,7 @@ const GuestBook = () => {
 
                 {/* 방명록 리스트 */}
                 <VStack align="stretch" mt={6} spacing={6}>
-                    {(guestbookEntries || [])?.map((entry) => (
+                        {Array.isArray(guestbookEntries) ? guestbookEntries.map((entry) => (
                         <Box key={entry.id} py={5} px={6} bg="blackAlpha.700" borderRadius="10px">
                             <HStack justify="space-between">
                                 {/* 유저 정보 */}
@@ -167,8 +173,10 @@ const GuestBook = () => {
                             <Divider my={3} />
                             {/* 메시지 내용 */}
                             <Text fontSize="sm">{entry.message}</Text>
-                        </Box>
-                    ))}
+                        </Box>))
+                        :
+                        <Text>방명록을 불러올 수 없습니다.</Text>
+                    }
                 </VStack>
             </Box>
         </Flex>
