@@ -1,23 +1,70 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# ========================
+# 📌 1. 프론트엔드 (React, TypeScript)
+# ========================
+/frontend/node_modules
+/frontend/.pnp
+/frontend.pnp.js
+/frontend/coverage
+/frontend/build
 
-# testing
-/coverage
+# 환경 변수 파일
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
 
-# production
-/build
+# 로그 & 디버그 파일
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
 
-# misc
+# VSCode 관련
+/.vscode/
+
+# MacOS 관련
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# ========================
+# 📌 2. 백엔드 (Django, DRF)
+# ========================
+/backend/__pycache__/
+/backend/db.sqlite3
+/backend/media/
+/backend/static/
+/backend/.venv
+/backend/venv
+/backend/.env
+/backend/.env.local
+/backend/.env.development
+/backend/.env.production
+
+# Django 로그 파일
+/backend/*.log
+/backend/*.pot
+/backend/*.pyc
+/backend/*.pyo
+/backend/*.swp
+
+# DRF 마이그레이션 관련 파일
+/backend/migrations/
+
+# VSCode 관련 (백엔드)
+backend/.vscode/
+
+# ========================
+# 📌 3. Docker (사용할 경우)
+/backend/.dockerignore
+/backend/docker-compose.yml
+/backend/Dockerfile
+/backend/.docker/
+
+# ========================
+# 📌 4. 기타 (IDE, OS, CI/CD)
+/.idea/       # JetBrains (PyCharm, WebStorm)
+/*.swp        # Vim swap 파일
+/.coverage    # Coverage.py 코드 커버리지 리포트
+/.pytest_cache/ # pytest 캐시
+/.tox/        # tox 환경
