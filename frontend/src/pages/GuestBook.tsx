@@ -28,7 +28,7 @@ const getRandomAvatar = () => {
         bgColor: avatarColors[Math.floor(Math.random() * avatarColors.length)]
     };
 };
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:8000";
+const BASE_URL = process.env.REACT_APP_BASE_URL ;
 const API_URL = `${BASE_URL}/api/guestbook`;
 
 const GuestBook = () => {
