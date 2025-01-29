@@ -28,7 +28,7 @@ const getRandomAvatar = () => {
         bgColor: avatarColors[Math.floor(Math.random() * avatarColors.length)]
     };
 };
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:8000";
 const API_URL = `${BASE_URL}/api/guestbook`;
 
 const GuestBook = () => {
@@ -43,6 +43,9 @@ const GuestBook = () => {
             .then((res) => setGuestbookEntries(res.data))
             .catch((err) => console.error("Error fetching guestbook:", err));
     }, []);
+
+
+    console.log("API BASE URL:", process.env.REACT_APP_BASE_URL);
 
 
     useEffect(() => {
