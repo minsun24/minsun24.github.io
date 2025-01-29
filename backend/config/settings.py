@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # CORS 미들웨어 추가
+    "corsheaders.middleware.CorsMiddleware",  # CORS 미들웨어 추가
     "whitenoise.middleware.WhiteNoiseMiddleware",   # whitenoise 추가 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -61,6 +61,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://minsun24.github.io",  # GitHub Pages 프론트엔드 URL 추가
 ]
 
 ROOT_URLCONF = 'config.urls'
