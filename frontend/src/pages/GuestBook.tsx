@@ -29,7 +29,7 @@ const getRandomAvatar = () => {
     };
 };
 const BASE_URL = process.env.BASE_URL;
-const API_URL = `${BASE_URL}/api/guestbook/`;
+const API_URL = `${BASE_URL}/api/guestbook`;
 
 const GuestBook = () => {
     const [name, setName] = useState("");
