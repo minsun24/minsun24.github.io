@@ -8,5 +8,5 @@ router.register('guestbook', GuestBookViewSet, basename='guestbook')  # ✅ `gue
 
 
 urlpatterns = [
-    path('', include(router.urls)), # https://minsun24-github-io.onrender.com/guestbook
+    path('', include(router.urls)), # https://minsun24-github-io.onrender.com/guestbook/
 ]

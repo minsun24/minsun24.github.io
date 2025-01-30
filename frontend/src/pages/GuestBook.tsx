@@ -68,12 +68,10 @@ const GuestBook = () => {
         if (!message.trim()) return; // 빈 메시지 방지
 
         const newEntry = {
-            id: guestbookEntries.length + 1,
             name: isAnonymous ? "익명" : name || "익명",
             emoji: getRandomAvatar().emoji, // 랜덤 아바타 생성
-            isGuest: isAnonymous,
-            message,
-            date: "Today"
+            is_guest: isAnonymous,
+            message
         };
 
         // setGuestbookEntries([newEntry, ...guestbookEntries]);
