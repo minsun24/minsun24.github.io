@@ -81,10 +81,12 @@ const GuestBook = () => {
         
         axios.post<GuestbookEntry>(API_URL, newEntry)
         .then((res) => {
-            setGuestbookEntries((prev) => [res.data, ... prev]);  // 새 데이터 추가
+            console.log("New Entry Response:", res.data);
+            setGuestbookEntries((prev) => [res.data, ...prev]);  // 새 데이터 추가
             setMessage(""); 
         })
         .catch((err) => console.error("Error posting guestbook:", err));
+
     };
 
     return (
