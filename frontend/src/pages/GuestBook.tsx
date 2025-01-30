@@ -28,8 +28,10 @@ const getRandomAvatar = () => {
         bgColor: avatarColors[Math.floor(Math.random() * avatarColors.length)]
     };
 };
+
+
 const BASE_URL = process.env.REACT_APP_BASE_URL ;
-const API_URL = `${BASE_URL}/guestbook/`;
+const API_URL = `${BASE_URL}/guestbook`;
 
 const GuestBook = () => {
     const [name, setName] = useState("");
