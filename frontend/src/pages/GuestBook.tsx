@@ -31,7 +31,7 @@ const getRandomAvatar = () => {
 
 
 const BASE_URL = process.env.REACT_APP_BASE_URL ;
-const API_URL = `${BASE_URL}/guestbook`;
+const API_URL = `${BASE_URL}/guestbook/`;
 
 const GuestBook = () => {
     const [name, setName] = useState("");
